@@ -1,14 +1,25 @@
 <template>
   <div class="home">
-    <h1>home</h1>
+    <AsideBar />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import AsideBar from "../components/Aside-bar";
+import AsideBarMenu from "../modules/AsideBarMenu";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    AsideBar,
+  },
+  data: () => ({
+    AsideBarMenu: AsideBarMenu || {},
+  }),
 };
 </script>
+<style scoped lang="scss">
+.home {
+  height: 100%;
+}
+</style>

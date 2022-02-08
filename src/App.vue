@@ -38,4 +38,8 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+  height: calc(100vh - 100px);
+}
+</style>

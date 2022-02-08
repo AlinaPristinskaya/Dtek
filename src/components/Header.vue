@@ -43,7 +43,7 @@ export default {
 @import "~@/assets/scss/_variables";
 .header {
   display: flex;
-  max-height: 100px;
+  height: 100px;
   background-color: $--color-text;
   &__content {
     display: flex;
