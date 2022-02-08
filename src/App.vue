@@ -41,5 +41,9 @@ export default {
 <style lang="scss">
 #app {
   height: calc(100vh - 100px);
+  background: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  color: black;
 }
 </style>

@@ -17,7 +17,6 @@ a {
   color: #2c3e50;
 }
 
-
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -64,8 +63,27 @@ button {
   border-radius: 4px;
   background-color: #409eff;
   text-align: center;
-  color: #fff;
+  color: $--color-white;
   padding: 40px 20px;
   box-sizing: border-box;
   margin-right: 20px;
+}
+.el-button {
+  outline: none;
+  transition-property: color, border, background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+  color: $--color-accent;
+  &:hover,
+  &:focus {
+    background-color: $--color-accent;
+    border: 1px solid $--color-black;
+  }
+}
+.el-menu {
+  list-style: none;
+  background-color: $--color-accent;
+  :only-child {
+    padding: 0px;
+  }
 }
