@@ -1,6 +1,66 @@
 <template>
   <div class="header">
     <div class="header__content _container">
+      <el-button
+        class="burger-menu"
+        type="info"
+        icon="el-icon-menu"
+        circle
+        @click="drawer = true"
+      ></el-button>
+
+      <el-drawer
+        :visible.sync="drawer"
+        direction="ttb"
+        :before-close="handleClose"
+        size="100%"
+      >
+        <el-menu
+          :default-active="$route.path"
+          class="el-menu-vertical-demo aside-bar"
+          :collapse="isCollapse"
+        >
+          <template v-for="(menuItem, index) in sidebarMenu">
+            <el-submenu
+              v-if="menuItem.type === 'submenu'"
+              :key="index"
+              :index="menuItem && menuItem.index"
+            >
+              <template slot="title">
+                <i :class="menuItem.icon"></i>
+                <span slot="title">{{ menuItem.title }}</span>
+              </template>
+              <el-menu-item-group
+                v-for="(submenuItem, index1) in menuItem.items"
+                :key="index1"
+              >
+                <span slot="title">{{ submenuItem.title }}</span>
+                <router-link
+                  v-for="navLink in submenuItem.links"
+                  :key="navLink.index"
+                  :to="navLink.url"
+                >
+                  <el-menu-item
+                    :index="navLink.index"
+                    @click="openTab(navLink.index)"
+                  >
+                    <i :class="navLink.icon"></i>
+                    {{ navLink.title }}</el-menu-item
+                  >
+                </router-link>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item
+              v-if="menuItem.type === 'menu-item'"
+              :key="index"
+              :index="menuItem && menuItem.index"
+            >
+              <i :class="menuItem.icon"></i>
+              <span slot="title">{{ menuItem.title }}</span>
+            </el-menu-item>
+          </template>
+        </el-menu>
+      </el-drawer>
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
@@ -35,19 +95,28 @@
 <script>
 export default {
   name: "Header",
+
   props: {
     isLoggedIn: {
       type: Boolean,
       default: () => false,
     },
+    sidebarMenu: {
+      type: Array,
+      default: () => [],
+    },
   },
   data: () => ({
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
+    drawer: false,
   }),
   methods: {
     logout() {
       this.$emit("logout");
+    },
+    handleClose(done) {
+      done();
     },
   },
 };
@@ -154,6 +223,13 @@ export default {
       stroke: $--color-black;
       stroke-width: 1px;
     }
+  }
+}
+.burger-menu {
+  margin-right: 10px;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
   }
 }
 </style>

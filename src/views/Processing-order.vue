@@ -17,10 +17,9 @@ export default {
   },
   data: () => ({
     loading: false,
+    dataTable: [],
   }),
-  created() {
-    this.$store.dispatch("getParams");
-  },
+  created() {},
 };
 </script>
 
