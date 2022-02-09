@@ -4,28 +4,61 @@
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
+      <div>
+        <button
+          type="button"
+          class="menu-button"
+          data-menu-button
+          aria-expanded="false"
+          aria-controls="menu-container"
+        >
+          <svg
+            width="40"
+            height="40"
+            aria-label="Переключатель мобильного меню"
+          >
+            <use
+              class="icon-cross"
+              href="../assets/img/spritecrossmenu.svg#cross"
+            ></use>
+            <use
+              class="icon-menu"
+              href="../assets/img/spritecrossmenu.svg#menu"
+            ></use>
+          </svg>
+        </button>
+      </div>
 
-      <div class="header__control">
+      <div class="menu-container" id="menu-container" data-menu>
         <div class="header__user">
           <a href="#" class="svga">
             <svg class="header__icon">
               <use href="../assets/img/symbol-defs.svg#icon-user"></use></svg
-          ></a>
-
-          <p class="user">{{ userName }}</p>
+            ><span class="user">{{ userName }}</span></a
+          >
         </div>
-        <div class="header__exit">
+
+        <div class="header__user">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="Выход"
+            placement="top-start"
+          >
+            <a href="#" class="svga"
+              ><svg @click="logout" class="header__icon">
+                <use
+                  href="../assets/img/symbol-defs.svg#icon-exit"
+                ></use></svg></a
+          ></el-tooltip>
+        </div>
+
+        <div class="header__user">
           <a href="#" class="svga"
-            ><svg class="header__icon">
-              <use href="../assets/img/symbol-defs.svg#icon-exit"></use></svg
-          ></a>
-
-          <p @click="logout" class="exit">Вихід</p>
-        </div>
-        <div class="header__lang">
-          <ul class="lang">
-            <li class="lang__activ"><span>UA</span></li>
-          </ul>
+            ><ul class="lang">
+              <li><span>UA</span></li>
+            </ul></a
+          >
         </div>
       </div>
     </div>
@@ -45,9 +78,28 @@ export default {
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
   }),
+  mounted() {
+    this.menuView();
+  },
   methods: {
     logout() {
       this.$emit("logout");
+    },
+    menuView() {
+      (() => {
+        const menuBtnRef = document.querySelector("[data-menu-button]");
+        const mobileMenuRef = document.querySelector("[data-menu]");
+
+        menuBtnRef.addEventListener("click", () => {
+          const expanded =
+            menuBtnRef.getAttribute("aria-expanded") === "true" || false;
+
+          menuBtnRef.classList.toggle("is-open");
+          menuBtnRef.setAttribute("aria-expanded", !expanded);
+
+          mobileMenuRef.classList.toggle("is-open");
+        });
+      })();
     },
   },
 };
@@ -71,21 +123,16 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
 
-  &__control {
-    display: flex;
-    align-items: center;
-    :not(:last-child) {
-      margin-right: 30px;
-    }
-    @media (max-width: 768px) {
-      :not(:last-child) {
-        margin-right: 10px;
-        font-size: 12px;
+      & .menu-button {
+        display: none;
       }
     }
   }
+
   &__exit {
     display: flex;
     align-items: center;
@@ -134,6 +181,11 @@ export default {
     }
   }
 }
+.user {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
 .svga {
   display: inline-flex;
   justify-content: center;
@@ -145,12 +197,73 @@ export default {
   transition-duration: 250ms;
   &:hover,
   &:focus {
-    color: $--color-accent;
+    color: $--color-primary;
     .header__icon {
-      fill: $--color-accent;
-      stroke: $--color-black;
+      fill: $--color-primary;
       stroke-width: 1px;
     }
   }
+}
+.menu-container {
+  @media screen and (max-width: 767px) {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 24px;
+
+    z-index: 99;
+
+    transform: translateX(-50%);
+    transform: translateY(100%);
+    background-color: $--color-white;
+    &.is-open {
+      display: block;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 0px;
+    align-items: center;
+    :not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+  @media (max-width: 768px) {
+    :not(:last-child) {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+  }
+}
+
+.menu-button {
+  display: inline-flex;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background-color: transparent;
+  fill: $--color-grey;
+  z-index: 100;
+
+  &:hover,
+  &:focus {
+    fill: $--color-primary;
+  }
+}
+.menu-button.is-open .icon-cross {
+  display: block;
+}
+.menu-button .icon-menu {
+  display: block;
+}
+.menu-button.is-open .icon-menu {
+  display: none;
+}
+.menu-button .icon-cross {
+  display: none;
 }
 </style>
