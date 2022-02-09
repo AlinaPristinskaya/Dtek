@@ -3,6 +3,7 @@
     <Header :isLoggedIn="isLoggedIn" @logout="logout" />
     <el-container style="height: 100%; width: 100%">
       <Asidebar
+        v-if="this.$route.name !== 'login'"
         :sidebar-menu="AsideBarMenu.sidebarMenu"
         @openTab="openTab"
         router

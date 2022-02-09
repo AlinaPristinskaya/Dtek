@@ -59,8 +59,8 @@ export default {
   display: flex;
   align-items: center;
   height: 100px;
-  border-bottom: $--color-grey 1px solid;
-  background-color: #e2e1e1;
+  border-bottom: $--color-grey 2px solid;
+  background-color: $--color-row;
 
   &__logo {
     padding-right: 10px;
