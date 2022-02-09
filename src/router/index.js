@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import store from "../store/index.js";
 import Login from "../views/Login.vue";
-import Secure from "../views/Secure.vue";
+import ProcessingOrder from "../views/Processing-order.vue";
 
 Vue.use(VueRouter);
 
@@ -19,11 +19,11 @@ const routes = [
     component: Login,
   },
   {
-    path: "/secure",
-    name: "secure",
-    component: Secure,
+    path: "/processingOrder",
+    name: "processingOrder",
+    component: ProcessingOrder,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
