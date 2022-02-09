@@ -59,6 +59,8 @@ export default {
   display: flex;
   height: 100px;
   border-bottom: $--color-grey 1px solid;
+  background-color: #e2e1e1;
+
   &__logo {
     padding-right: 10px;
     img {

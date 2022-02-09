@@ -63,9 +63,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "~@/assets/scss/_variables";
 .aside-bar {
-  max-width: 175px;
+  background-color: $--color-coll;
+  max-width: 205px;
   height: 100%;
+
   .btn-side-bar {
     display: flex;
     flex-direction: column;
