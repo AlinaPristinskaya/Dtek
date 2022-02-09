@@ -110,8 +110,11 @@ export default {
 @import "~@/assets/scss/_variables";
 .header {
   display: flex;
+  align-items: center;
   height: 100px;
-  border-bottom: $--color-grey 1px solid;
+  border-bottom: $--color-grey 2px solid;
+  background-color: $--color-row;
+
   &__logo {
     padding-right: 10px;
     img {

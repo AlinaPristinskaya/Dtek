@@ -1,0 +1,44 @@
+{
+  "data": {
+    "token": "veke3mo0mvajgc4eik2i797dc6",
+    "count": 982,
+    "next": "http://185.151.244.227:82/api/v1/person/?limit=20&offset=20"
+  },
+  "dataTable": [
+    {
+      "trip": "1",
+      "dataDrip": "21.01.2021",
+      "order": "77",
+      "dataCreate": "2022-02-09 14:26",
+      "status": "Відміна"
+    },
+    {
+      "trip": "1",
+      "dataDrip": "21.01.2021",
+      "order": "77",
+      "dataCreate": "2022-02-09 14:26",
+      "status": "Відміна"
+    },
+    {
+      "trip": "1",
+      "dataDrip": "21.01.2021",
+      "order": "77",
+      "dataCreate": "2022-02-09 14:26",
+      "status": "Відміна"
+    },
+    {
+      "trip": "1",
+      "dataDrip": "21.01.2021",
+      "order": "77",
+      "dataCreate": "2022-02-09 14:26",
+      "status": "Відміна"
+    },
+    {
+      "trip": "1",
+      "dataDrip": "21.01.2021",
+      "order": "77",
+      "dataCreate": "2022-02-09 14:26",
+      "status": "Відміна"
+    }
+  ]
+}

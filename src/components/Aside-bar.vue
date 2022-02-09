@@ -1,11 +1,8 @@
 <template>
   <el-menu
-    default-active="2"
+    :default-active="$route.path"
     class="el-menu-vertical-demo aside-bar"
-    @open="handleOpen"
-    @close="handleClose"
     :collapse="isCollapse"
-    router
   >
     <el-button
       v-model="isCollapse"
@@ -15,42 +12,57 @@
       circle
       @click.stop="asideToggle"
     ></el-button>
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span slot="title">Navigator One</span>
-      </template>
-      <el-menu-item-group>
-        <span slot="title">Group One</span>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <span slot="title">item four</span>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
+    <template v-for="(menuItem, index) in sidebarMenu">
+      <el-submenu
+        v-if="menuItem.type === 'submenu'"
+        :key="index"
+        :index="menuItem && menuItem.index"
+      >
+        <template slot="title">
+          <i :class="menuItem.icon"></i>
+          <span slot="title">{{ menuItem.title }}</span>
+        </template>
+        <el-menu-item-group
+          v-for="(submenuItem, index1) in menuItem.items"
+          :key="index1"
+        >
+          <span slot="title">{{ submenuItem.title }}</span>
+          <router-link
+            v-for="navLink in submenuItem.links"
+            :key="navLink.index"
+            :to="navLink.url"
+          >
+            <el-menu-item
+              :index="navLink.index"
+              @click="openTab(navLink.index)"
+            >
+              <i :class="navLink.icon"></i>
+              {{ navLink.title }}</el-menu-item
+            >
+          </router-link>
+        </el-menu-item-group>
       </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <span slot="title">Navigator Two</span>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <i class="el-icon-document"></i>
-      <span slot="title">Navigator Three</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <span slot="title">Navigator Four</span>
-    </el-menu-item>
+      <el-menu-item
+        v-if="menuItem.type === 'menu-item'"
+        :key="index"
+        :index="menuItem && menuItem.index"
+      >
+        <i :class="menuItem.icon"></i>
+        <span slot="title">{{ menuItem.title }}</span>
+      </el-menu-item>
+    </template>
   </el-menu>
 </template>
 
 <script>
 export default {
   name: "Aside-bar",
+  props: {
+    sidebarMenu: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data: () => ({
     isCollapse: false,
   }),
@@ -63,9 +75,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "~@/assets/scss/_variables";
 .aside-bar {
-  max-width: 175px;
+  background-color: $--color-coll;
+  max-width: 245px;
   height: 100%;
+
   .btn-side-bar {
     display: flex;
     flex-direction: column;

@@ -1,10 +1,10 @@
 <template>
-  <h1>Контекст</h1>
+  <h1>settings</h1>
 </template>
 
 <script>
 export default {
-  name: "Secure",
+  name: "Settings",
 };
 </script>
 

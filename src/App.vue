@@ -1,15 +1,31 @@
 <template>
   <div id="app">
     <Header :isLoggedIn="isLoggedIn" @logout="logout" />
-    <router-view />
+    <el-container style="height: 100%; width: 100%">
+      <Asidebar
+        v-if="this.$route.name !== 'login'"
+        :sidebar-menu="AsideBarMenu.sidebarMenu"
+        @openTab="openTab"
+        router
+      />
+      <router-view />
+    </el-container>
   </div>
 </template>
 <script>
 import Header from "./components/Header";
+import Asidebar from "./components/Aside-bar";
+import AsideBarMenu from "./modules/AsideBarMenu";
 export default {
-  components: { Header },
+  components: {
+    Header,
+    Asidebar,
+  },
   data: () => ({
+    AsideBarMenu: AsideBarMenu || {},
     isLoggedIn: true,
+    openedMenuTabs: [],
+    activeTab: "1-1",
   }),
 
   computed: {
@@ -34,6 +50,10 @@ export default {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
+    },
+    openTab(index) {
+      this.openedMenuTabs.push(index);
+      this.activeTab = index;
     },
   },
 };
