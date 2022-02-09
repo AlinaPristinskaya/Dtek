@@ -1,5 +1,5 @@
 <template>
-  <div class="home _container">
+  <div class="home">
     <AsideBar />
   </div>
 </template>
