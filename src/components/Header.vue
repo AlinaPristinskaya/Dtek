@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__content _container">
-      <BurgerButton @toggleMenu="toggleMenu" />
+      <BurgerButton :isActiveBtn="drawer" @toggleMenu="toggleMenu" />
 
       <el-drawer
         :visible.sync="drawer"
@@ -10,7 +10,7 @@
         size="100%"
         :show-close="false"
       >
-        <MenuList :sidebarMenu="sidebarMenu" />
+        <MenuList @item-click="toggleMenu" :sidebarMenu="sidebarMenu" />
       </el-drawer>
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
@@ -109,6 +109,7 @@ export default {
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
     drawer: false,
+    refBtn: null,
   }),
   methods: {
     toggleMenu() {

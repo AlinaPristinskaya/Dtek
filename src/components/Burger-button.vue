@@ -1,6 +1,11 @@
 <template>
   <div class="box">
-    <div ref="btn" class="btn not-active" @click="toggleMenu">
+    <div
+      ref="btn"
+      class="btn"
+      :class="[isActiveBtn ? 'active' : 'not-active']"
+      @click="toggleMenu"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -11,10 +16,15 @@
 <script>
 export default {
   name: "BurgerButton",
+  props: {
+    isActiveBtn: {
+      type: Boolean,
+      default: () => false,
+    },
+  },
+  data: () => ({}),
   methods: {
     toggleMenu() {
-      this.$refs.btn.classList.toggle("active");
-      this.$refs.btn.classList.toggle("not-active");
       this.$emit("toggleMenu");
     },
   },
