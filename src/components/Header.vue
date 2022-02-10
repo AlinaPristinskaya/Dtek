@@ -1,19 +1,14 @@
 <template>
   <div class="header">
     <div class="header__content _container">
-      <el-button
-        class="burger-menu"
-        type="info"
-        icon="el-icon-menu"
-        circle
-        @click="drawer = true"
-      ></el-button>
+      <BurgerButton @toggleMenu="toggleMenu" />
 
       <el-drawer
         :visible.sync="drawer"
         direction="ttb"
         :before-close="handleClose"
         size="100%"
+        :show-close="false"
       >
         <el-menu
           :default-active="$route.path"
@@ -93,8 +88,10 @@
 </template>
 
 <script>
+import BurgerButton from "./Burger-button";
 export default {
   name: "Header",
+  components: { BurgerButton },
 
   props: {
     isLoggedIn: {
@@ -112,6 +109,9 @@ export default {
     drawer: false,
   }),
   methods: {
+    toggleMenu() {
+      this.drawer = !this.drawer;
+    },
     logout() {
       this.$emit("logout");
     },
