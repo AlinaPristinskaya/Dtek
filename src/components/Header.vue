@@ -10,51 +10,7 @@
         size="100%"
         :show-close="false"
       >
-        <el-menu
-          :default-active="$route.path"
-          class="el-menu-vertical-demo aside-bar"
-          :collapse="isCollapse"
-        >
-          <template v-for="(menuItem, index) in sidebarMenu">
-            <el-submenu
-              v-if="menuItem.type === 'submenu'"
-              :key="index"
-              :index="menuItem && menuItem.index"
-            >
-              <template slot="title">
-                <i :class="menuItem.icon"></i>
-                <span slot="title">{{ menuItem.title }}</span>
-              </template>
-              <el-menu-item-group
-                v-for="(submenuItem, index1) in menuItem.items"
-                :key="index1"
-              >
-                <span slot="title">{{ submenuItem.title }}</span>
-                <router-link
-                  v-for="navLink in submenuItem.links"
-                  :key="navLink.index"
-                  :to="navLink.url"
-                >
-                  <el-menu-item
-                    :index="navLink.index"
-                    @click="openTab(navLink.index)"
-                  >
-                    <i :class="navLink.icon"></i>
-                    {{ navLink.title }}</el-menu-item
-                  >
-                </router-link>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-menu-item
-              v-if="menuItem.type === 'menu-item'"
-              :key="index"
-              :index="menuItem && menuItem.index"
-            >
-              <i :class="menuItem.icon"></i>
-              <span slot="title">{{ menuItem.title }}</span>
-            </el-menu-item>
-          </template>
-        </el-menu>
+        <MenuList :sidebarMenu="sidebarMenu" />
       </el-drawer>
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
@@ -129,12 +85,14 @@
 <script>
 import LocaleSwitcher from "../views/LocaleSwitcher.vue";
 import BurgerButton from "./Burger-button";
+import MenuList from "./Menu-list";
 
 export default {
   name: "Header",
   components: {
     LocaleSwitcher,
     BurgerButton,
+    MenuList,
   },
 
   props: {
@@ -152,7 +110,6 @@ export default {
     url: "@/assets/img/logo.svg",
     drawer: false,
   }),
-
   methods: {
     toggleMenu() {
       this.drawer = !this.drawer;
@@ -195,7 +152,6 @@ export default {
       align-items: center;
     }
   }
-
   &__user {
     display: flex;
     align-items: center;
@@ -254,7 +210,6 @@ export default {
   transition-property: color, border;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
-
   &:hover,
   &:focus {
     color: $--color-primary;

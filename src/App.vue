@@ -9,8 +9,6 @@
       <Asidebar
         v-if="this.$route.name !== 'login'"
         :sidebar-menu="AsideBarMenu.sidebarMenu"
-        @openTab="openTab"
-        router
       />
       <router-view />
     </el-container>
@@ -56,10 +54,10 @@ export default {
         this.$router.push("/login");
       });
     },
-    openTab(index) {
-      this.openedMenuTabs.push(index);
-      this.activeTab = index;
-    },
+    // openTab(index) {
+    //   this.openedMenuTabs.push(index);
+    //   this.activeTab = index;
+    // },
   },
 };
 </script>
