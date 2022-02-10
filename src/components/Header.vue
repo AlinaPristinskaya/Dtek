@@ -1,19 +1,14 @@
 <template>
   <div class="header">
     <div class="header__content _container">
-      <el-button
-        class="burger-menu"
-        type="info"
-        icon="el-icon-menu"
-        circle
-        @click="drawer = true"
-      ></el-button>
+      <BurgerButton @toggleMenu="toggleMenu" />
 
       <el-drawer
         :visible.sync="drawer"
         direction="ttb"
         :before-close="handleClose"
         size="100%"
+        :show-close="false"
       >
         <el-menu
           :default-active="$route.path"
@@ -133,12 +128,15 @@
 
 <script>
 import LocaleSwitcher from "../views/LocaleSwitcher.vue";
+import BurgerButton from "./Burger-button";
 
 export default {
   name: "Header",
   components: {
     LocaleSwitcher,
+    BurgerButton,
   },
+
   props: {
     isLoggedIn: {
       type: Boolean,
@@ -156,6 +154,9 @@ export default {
   }),
 
   methods: {
+    toggleMenu() {
+      this.drawer = !this.drawer;
+    },
     logout() {
       this.$emit("logout");
     },
@@ -174,6 +175,7 @@ export default {
   height: 100px;
   border-bottom: $--color-grey 2px solid;
   background-color: $--color-row;
+  position: relative;
 
   &__logo {
     padding-right: 10px;
@@ -209,7 +211,6 @@ export default {
     font-size: 12px;
     text-transform: uppercase;
     height: 86px;
-    position: relative;
   }
   &__lang {
     display: flex;
