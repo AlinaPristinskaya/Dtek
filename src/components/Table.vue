@@ -3,6 +3,7 @@
     :data="tableData"
     v-loading.fullscreen.lock="loading"
     style="width: 100%"
+    @row-dblclick="clickCell"
   >
     <el-table-column prop="trip" label="Рейс №"> </el-table-column>
     <el-table-column prop="dataDrip" label="Дата рейсу"></el-table-column>
@@ -68,6 +69,12 @@ export default {
       },
     ],
   }),
+  methods: {
+    /****/
+    clickCell(row) {
+      console.log(row);
+    },
+  },
 };
 </script>
 

@@ -25,14 +25,14 @@ export default {
 @import "~@/assets/scss/_variables";
 .box {
   display: none;
+  margin-right: 10px;
   @media (max-width: 768px) {
     display: block;
-    margin-top: 17px;
   }
 }
 
 .btn {
-  width: 50px;
+  width: 40px;
   cursor: pointer;
   position: relative;
   z-index: 9999999;

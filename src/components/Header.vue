@@ -130,6 +130,7 @@ export default {
   height: 100px;
   border-bottom: $--color-grey 2px solid;
   background-color: $--color-row;
+  position: relative;
 
   &__logo {
     padding-right: 10px;
@@ -176,7 +177,6 @@ export default {
     font-size: 12px;
     text-transform: uppercase;
     height: 86px;
-    position: relative;
   }
   &__lang {
     display: flex;
