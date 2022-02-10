@@ -7,7 +7,9 @@
       :rules="rules"
       @submit.native.prevent="submitLogin"
     >
-      <h1>Вхід до системи</h1>
+      <h1>
+        <p>{{ $t("main.login") }}</p>
+      </h1>
       <el-form-item :label="логін" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
@@ -17,7 +19,7 @@
 
       <div class="login__footer">
         <el-button type="primary" native-type="submit" :loading="loading">
-          Вхід
+          <p>{{ $t("main.loginBtn") }}</p>
         </el-button>
       </div>
     </el-form>
@@ -36,7 +38,7 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "Введіть ім'я", trigger: "blur" },
+          { required: true, message: "Введіть І`мя", trigger: "blur" },
         ],
         password: [
           {

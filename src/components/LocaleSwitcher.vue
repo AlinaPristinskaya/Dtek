@@ -7,7 +7,7 @@
         content="Мова"
         placement="right-start"
       >
-        <a href="#" @click="switchLocalebtn">
+        <a href="#" @click.prevent="switchLocalebtn">
           <img src="../assets/img/uk.png" alt="" width="40" height="30" /> </a
       ></el-tooltip>
     </div>
@@ -18,7 +18,7 @@
         content="Язык"
         placement="right-start"
       >
-        <a href="#" @click="switchLocalebtn">
+        <a href="#" @click.prevent="switchLocalebtn">
           <img src="../assets/img/ru.png" alt="" width="40" height="30" /> </a
       ></el-tooltip>
     </div>
@@ -62,7 +62,8 @@ export default {
     switchLocalebtn() {
       this.btn = !this.btn;
       const lang = this.langs.find((item) => item.value !== this.$i18n.locale);
-      this.switchLocale(lang.value);
+      setTimeout(this.switchLocale(lang.value), 1000);
+      // this.switchLocale(lang.value);
     },
     select() {
       this.value = localStorage.getItem("localeLang") || `ua`;

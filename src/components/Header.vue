@@ -17,7 +17,7 @@
       </div>
 
       <div>
-        <el-dropdown class="dropdown-menu">
+        <el-dropdown :hide-on-click="false" class="dropdown-menu">
           <i class="el-icon-setting"></i>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import LocaleSwitcher from "../views/LocaleSwitcher.vue";
+import LocaleSwitcher from "./LocaleSwitcher.vue";
 import BurgerButton from "./Burger-button";
 import MenuList from "./Menu-list";
 
@@ -117,6 +117,7 @@ export default {
     logout() {
       this.$emit("logout");
     },
+
     handleClose(done) {
       done();
     },
