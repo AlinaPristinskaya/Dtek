@@ -1,6 +1,7 @@
 const path = require("path");
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/kiosk/" : "/",
+
   configureWebpack: {
     resolve: {
       alias: {
@@ -10,6 +11,17 @@ module.exports = {
           "./src/assets/scss/_variables.scss"
         ),
       },
+    },
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: "en",
+      fallbackLocale: "ru",
+      localeDir: "locales",
+      enableInSFC: false,
+      includeLocales: false,
+      enableBridge: true,
     },
   },
 };

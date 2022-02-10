@@ -16,6 +16,7 @@
 import Header from "./components/Header";
 import Asidebar from "./components/Aside-bar";
 import AsideBarMenu from "./modules/AsideBarMenu";
+
 export default {
   components: {
     Header,

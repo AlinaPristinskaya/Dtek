@@ -4,30 +4,39 @@
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
+      <p>{{ $t("main.language") }}</p>
 
       <div>
-        <button
-          type="button"
-          class="menu-button"
-          data-menu-button
-          aria-expanded="false"
-          aria-controls="menu-container"
-        >
-          <svg
-            width="20"
-            height="20"
-            aria-label="Переключатель мобильного меню"
-          >
-            <use
-              class="icon-cross"
-              href="../assets/img/spritecrossmenu.svg#settings"
-            ></use>
-            <use
-              class="icon-menu"
-              href="../assets/img/spritecrossmenu.svg#settings"
-            ></use>
-          </svg>
-        </button>
+        <el-dropdown class="dropdown-menu">
+          <i class="el-icon-setting"></i>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              ><a href="#" class="svga">
+                <svg class="header__icon">
+                  <use
+                    href="../assets/img/symbol-defs.svg#icon-user"
+                  ></use></svg
+                ><span class="user">{{ userName }}</span></a
+              ></el-dropdown-item
+            >
+            <el-dropdown-item
+              ><el-tooltip
+                class="item"
+                effect="light"
+                content="Выход"
+                placement="right-start"
+              >
+                <a href="#" class="svga"
+                  ><svg @click="logout" class="header__icon">
+                    <use
+                      href="../assets/img/symbol-defs.svg#icon-exit"
+                    ></use></svg></a></el-tooltip
+            ></el-dropdown-item>
+            <el-dropdown-item>
+              <a href="#" class="svga"><locale-switcher /></a
+            ></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
 
         <div class="menu-container" id="menu-container" data-menu>
           <div class="header__user">
@@ -54,11 +63,7 @@
           </div>
 
           <div class="header__user">
-            <a href="#" class="svga"
-              ><ul class="lang">
-                <li><span>UA</span></li>
-              </ul></a
-            >
+            <a href="#" class="svga"><locale-switcher /></a>
           </div>
         </div>
       </div>
@@ -67,8 +72,12 @@
 </template>
 
 <script>
+import LocaleSwitcher from "../views/LocaleSwitcher.vue";
 export default {
   name: "Header",
+  components: {
+    LocaleSwitcher,
+  },
   props: {
     isLoggedIn: {
       type: Boolean,
@@ -79,28 +88,10 @@ export default {
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
   }),
-  mounted() {
-    this.menuView();
-  },
+
   methods: {
     logout() {
       this.$emit("logout");
-    },
-    menuView() {
-      (() => {
-        const menuBtnRef = document.querySelector("[data-menu-button]");
-        const mobileMenuRef = document.querySelector("[data-menu]");
-
-        menuBtnRef.addEventListener("click", () => {
-          const expanded =
-            menuBtnRef.getAttribute("aria-expanded") === "true" || false;
-
-          menuBtnRef.classList.toggle("is-open");
-          menuBtnRef.setAttribute("aria-expanded", !expanded);
-
-          mobileMenuRef.classList.toggle("is-open");
-        });
-      })();
     },
   },
 };
@@ -222,8 +213,8 @@ export default {
     right: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: $--color-white;
-    border: 1px solid $--color-grey;
+    background-color: #eeeeee;
+    border: solid 1px #e6e6e6;
     z-index: 99;
     transform: translateX(-50%);
     transform: translateY(100%);
@@ -273,5 +264,11 @@ export default {
 }
 .menu-button .icon-cross {
   display: none;
+}
+.dropdown-menu {
+  display: none;
+  @media screen and(max-width:767px) {
+    display: block;
+  }
 }
 </style>
