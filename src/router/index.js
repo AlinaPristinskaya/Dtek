@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import store from "../store/index.js";
 import Login from "../views/Login.vue";
 import ProcessingOrder from "../views/Processing-order.vue";
+import Settings from "../views/Settings";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/settings",
+    name: "settings",
+    component: Settings,
   },
   {
     path: "/processingOrder",

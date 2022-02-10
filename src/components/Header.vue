@@ -1,7 +1,11 @@
 <template>
   <div class="header">
     <div class="header__content _container">
-      <BurgerButton :isActiveBtn="drawer" @toggleMenu="toggleMenu" />
+      <BurgerButton
+        v-if="this.$route.name !== 'login'"
+        :isActiveBtn="drawer"
+        @toggleMenu="toggleMenu"
+      />
 
       <el-drawer
         :visible.sync="drawer"
@@ -54,7 +58,9 @@
             <a href="#" class="svga">
               <svg class="header__icon">
                 <use href="../assets/img/symbol-defs.svg#icon-user"></use></svg
-              ><span class="user">{{ userName }}</span></a
+              ><span v-if="this.$route.name !== 'login'" class="user">{{
+                userName
+              }}</span></a
             >
           </div>
 
