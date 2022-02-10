@@ -86,13 +86,6 @@ button {
 }
 .el-input > .el-input__inner {
   display: block;
-  /*  content: "Ru";
-  height: 42px;
-  background-image: url(../img/uk.png);
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: contain;
-  padding: 0px; */
 }
 .el-select {
   width: 60px;
@@ -100,8 +93,8 @@ button {
 .el-input {
   background-color: #eeeeee;
 }
-/* .el-popper {
+.el-popper {
   display: flex;
   flex-direction: column;
   align-items: center;
-} */
+}

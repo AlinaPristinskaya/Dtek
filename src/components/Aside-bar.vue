@@ -80,6 +80,10 @@ export default {
   background-color: $--color-coll;
   max-width: 245px;
   height: 100%;
+  display: block;
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   .btn-side-bar {
     display: flex;

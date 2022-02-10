@@ -1,17 +1,77 @@
 <template>
   <div class="header">
     <div class="header__content _container">
+      <el-button
+        class="burger-menu"
+        type="info"
+        icon="el-icon-menu"
+        circle
+        @click="drawer = true"
+      ></el-button>
+
+      <el-drawer
+        :visible.sync="drawer"
+        direction="ttb"
+        :before-close="handleClose"
+        size="100%"
+      >
+        <el-menu
+          :default-active="$route.path"
+          class="el-menu-vertical-demo aside-bar"
+          :collapse="isCollapse"
+        >
+          <template v-for="(menuItem, index) in sidebarMenu">
+            <el-submenu
+              v-if="menuItem.type === 'submenu'"
+              :key="index"
+              :index="menuItem && menuItem.index"
+            >
+              <template slot="title">
+                <i :class="menuItem.icon"></i>
+                <span slot="title">{{ menuItem.title }}</span>
+              </template>
+              <el-menu-item-group
+                v-for="(submenuItem, index1) in menuItem.items"
+                :key="index1"
+              >
+                <span slot="title">{{ submenuItem.title }}</span>
+                <router-link
+                  v-for="navLink in submenuItem.links"
+                  :key="navLink.index"
+                  :to="navLink.url"
+                >
+                  <el-menu-item
+                    :index="navLink.index"
+                    @click="openTab(navLink.index)"
+                  >
+                    <i :class="navLink.icon"></i>
+                    {{ navLink.title }}</el-menu-item
+                  >
+                </router-link>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item
+              v-if="menuItem.type === 'menu-item'"
+              :key="index"
+              :index="menuItem && menuItem.index"
+            >
+              <i :class="menuItem.icon"></i>
+              <span slot="title">{{ menuItem.title }}</span>
+            </el-menu-item>
+          </template>
+        </el-menu>
+      </el-drawer>
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
-      <p>{{ $t("main.language") }}</p>
 
       <div>
         <el-dropdown class="dropdown-menu">
           <i class="el-icon-setting"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              ><a href="#" class="svga">
+            <el-dropdown-item>
+              <!-- Повторяющийся элемент -->
+              <a href="#" class="svga">
                 <svg class="header__icon">
                   <use
                     href="../assets/img/symbol-defs.svg#icon-user"
@@ -22,14 +82,14 @@
             <el-dropdown-item
               ><el-tooltip
                 class="item"
-                effect="light"
+                effect="dark"
                 content="Выход"
                 placement="right-start"
               >
                 <a href="#" class="svga"
                   ><svg @click="logout" class="header__icon">
                     <use
-                      href="../assets/img/symbol-defs.svg#icon-exit"
+                      href="~@/assets/img/symbol-defs.svg#icon-exit"
                     ></use></svg></a></el-tooltip
             ></el-dropdown-item>
             <el-dropdown-item>
@@ -38,7 +98,7 @@
           </el-dropdown-menu>
         </el-dropdown>
 
-        <div class="menu-container" id="menu-container" data-menu>
+        <div class="menu-container">
           <div class="header__user">
             <a href="#" class="svga">
               <svg class="header__icon">
@@ -50,14 +110,14 @@
           <div class="header__user">
             <el-tooltip
               class="item"
-              effect="light"
+              effect="dark"
               content="Выход"
               placement="right-start"
             >
               <a href="#" class="svga"
                 ><svg @click="logout" class="header__icon">
                   <use
-                    href="../assets/img/symbol-defs.svg#icon-exit"
+                    href="~@/assets/img/symbol-defs.svg#icon-exit"
                   ></use></svg></a
             ></el-tooltip>
           </div>
@@ -73,6 +133,7 @@
 
 <script>
 import LocaleSwitcher from "../views/LocaleSwitcher.vue";
+
 export default {
   name: "Header",
   components: {
@@ -83,15 +144,23 @@ export default {
       type: Boolean,
       default: () => false,
     },
+    sidebarMenu: {
+      type: Array,
+      default: () => [],
+    },
   },
   data: () => ({
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
+    drawer: false,
   }),
 
   methods: {
     logout() {
       this.$emit("logout");
+    },
+    handleClose(done) {
+      done();
     },
   },
 };
@@ -122,20 +191,9 @@ export default {
     @media screen and (min-width: 768px) {
       display: flex;
       align-items: center;
-
-      & .menu-button {
-        display: none;
-      }
     }
   }
 
-  &__exit {
-    display: flex;
-    align-items: center;
-    color: $--color-black;
-    font-weight: 500;
-    font-size: 18px;
-  }
   &__user {
     display: flex;
     align-items: center;
@@ -206,7 +264,7 @@ export default {
   }
 }
 .menu-container {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
     position: fixed;
     top: 100px;
@@ -220,10 +278,6 @@ export default {
     transform: translateY(100%);
     :not(:last-child) {
       margin-bottom: 5px;
-    }
-    &.is-open {
-      display: block;
-      transform: translateY(0);
     }
   }
 
@@ -239,32 +293,6 @@ export default {
   }
 }
 
-.menu-button {
-  display: inline-flex;
-  padding: 0px;
-  margin: 0px;
-  border: none;
-  background-color: transparent;
-  fill: $--color-grey;
-  z-index: 100;
-
-  &:hover,
-  &:focus {
-    fill: $--color-primary;
-  }
-}
-.menu-button.is-open .icon-cross {
-  display: block;
-}
-.menu-button .icon-menu {
-  display: block;
-}
-.menu-button.is-open .icon-menu {
-  display: none;
-}
-.menu-button .icon-cross {
-  display: none;
-}
 .dropdown-menu {
   display: none;
   @media screen and(max-width:767px) {

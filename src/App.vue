@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Header :isLoggedIn="isLoggedIn" @logout="logout" />
+    <Header
+      :isLoggedIn="isLoggedIn"
+      :sidebar-menu="AsideBarMenu.sidebarMenu"
+      @logout="logout"
+    />
     <el-container style="height: 100%; width: 100%">
       <Asidebar
         v-if="this.$route.name !== 'login'"
