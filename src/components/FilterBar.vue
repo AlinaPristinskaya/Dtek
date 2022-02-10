@@ -17,10 +17,17 @@
       >
     </li>
     <li>
-      <el-input placeholder="пошук" v-model="search" class="desctop">
+      <el-input
+        v-show="focused"
+        @focus="focused"
+        @blur="focusedOff"
+        placeholder="пошук"
+        v-model="search"
+      >
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
       <el-button
+        @click="searchBtn"
         circle
         type="primary"
         icon="el-icon-search"
@@ -47,7 +54,27 @@ export default {
   data: () => ({
     checked: false,
     search: "",
+    focused: true,
+    width: 0,
   }),
+  mounted() {
+    this.updateWidth();
+    this.width > 768 ? (this.focused = true) : (this.focused = false);
+  },
+
+  methods: {
+    searchBtn() {
+      console.log(18);
+      this.focused = true;
+    },
+    updateWidth() {
+      this.width = window.innerWidth;
+      console.log(this.width);
+    },
+    focusedOff() {
+      if (this.width < 768) this.focused = false;
+    },
+  },
 };
 </script>
 
@@ -86,6 +113,36 @@ export default {
 .mobile {
   @media screen and(min-width:768px) {
     display: none;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-form {
+    background: none;
+    border: none;
+    transition: width 0.9s;
+    font: 0.9rem/1 "Open Sans", sans-serif;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+
+    &::placeholder {
+      color: red;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+      width: 10rem;
+      background: white;
+
+      &::placeholder {
+        color: var(--main-dark);
+      }
+    }
   }
 }
 </style>
