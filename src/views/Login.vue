@@ -8,10 +8,10 @@
       @submit.native.prevent="submitLogin"
     >
       <h1>Вхід до системи</h1>
-      <el-form-item :label="логін" prop="username">
+      <el-form-item label="логін" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
-      <el-form-item :label="пароль" prop="password">
+      <el-form-item label="пароль" prop="password">
         <el-input v-model="form.password" show-password />
       </el-form-item>
 
