@@ -8,7 +8,7 @@
     <el-table-column prop="trip" label="Рейс №"> </el-table-column>
     <el-table-column prop="dataDrip" label="Дата рейсу"></el-table-column>
     <el-table-column prop="order" label="Номера заявок"> </el-table-column>
-    <el-table-column prop="dataCreate" label="Дата створення">
+    <el-table-column prop="dataCreate" :label="this.$t('data create')">
     </el-table-column>
     <el-table-column prop="status" label="Статус"> </el-table-column>
   </el-table>

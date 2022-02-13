@@ -1,6 +1,4 @@
 {
-
-    "main": {
       "welcome": "Вас вітає {company}!",
       "language": "Оберіть мову",
       "courier": "ВАШ КУР'ЄР",
@@ -11,10 +9,8 @@
       "dataDrip": "Дата доставки",
       "dataCreate": "Дата створення",
       "order": "Заказ",
-      "status": "Статус"
-
-
-
-
-    }
-  }
+      "status": "Статус",
+  "Processing order": "Обробка заказу",
+  "data create" : "Дата створення",
+  "main": "Главная"
+}
