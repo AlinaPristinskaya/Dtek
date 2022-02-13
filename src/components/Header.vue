@@ -1,7 +1,11 @@
 <template>
   <div class="header">
     <div class="header__content _container">
-      <BurgerButton @toggleMenu="toggleMenu" />
+      <BurgerButton
+        v-if="this.$route.name !== 'login'"
+        :isActiveBtn="drawer"
+        @toggleMenu="toggleMenu"
+      />
 
       <el-drawer
         :visible.sync="drawer"
@@ -10,11 +14,12 @@
         size="100%"
         :show-close="false"
       >
-        <MenuList :sidebarMenu="sidebarMenu" />
+        <MenuList @item-click="toggleMenu" :sidebarMenu="sidebarMenu" />
       </el-drawer>
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
+      <p>{{ $t("language") }}</p>
 
       <div>
         <el-dropdown :hide-on-click="false" class="dropdown-menu">
@@ -34,7 +39,7 @@
               ><el-tooltip
                 class="item"
                 effect="dark"
-                content="Выход"
+                :content="this.$t('exit')"
                 placement="right-start"
               >
                 <a href="#" class="svga"
@@ -54,7 +59,9 @@
             <a href="#" class="svga">
               <svg class="header__icon">
                 <use href="../assets/img/symbol-defs.svg#icon-user"></use></svg
-              ><span class="user">{{ userName }}</span></a
+              ><span v-if="this.$route.name !== 'login'" class="user">{{
+                userName
+              }}</span></a
             >
           </div>
 
@@ -62,7 +69,7 @@
             <el-tooltip
               class="item"
               effect="dark"
-              content="Выход"
+              :content="this.$t('exit')"
               placement="right-start"
             >
               <a href="#" class="svga"
@@ -109,6 +116,7 @@ export default {
     userName: "ИП Баскаков Павел Владимирович",
     url: "@/assets/img/logo.svg",
     drawer: false,
+    refBtn: null,
   }),
   methods: {
     toggleMenu() {

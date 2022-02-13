@@ -77,6 +77,7 @@ export default {
       this.$emit("asideToggle");
     },
     itemClick() {
+      this.$emit("item-click");
       console.log("111");
     },
   },

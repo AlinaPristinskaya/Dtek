@@ -1,10 +1,18 @@
-{
-
-    "main": {
+ {
       "login":"Вход в систему",
        "loginBtn":"Войти",
        "loginName":"Введите Имя",
-      "loginPassword":"Введите пароль"
-  
+      "loginPassword":"Введите пароль",
+      "language":"Язык",     
+      "addForm":"Добавить форму",
+       "activeFlight": "Активные рейсы",     
+      "flight":"Рейс №",
+      "dateFlight":"Дата рейса",
+      "numberOrders":"Номер заявки",
+      "data":"Дата создания",
+      "status":"Статус",      
+      "exit":"Выход",    
+      "search":"поиск",
+      "main":"Главная"
     }
-  }
+  

@@ -13,7 +13,7 @@
       <el-form-item :label="логін" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
-      <el-form-item :label="пароль" prop="password">
+      <el-form-item label="пароль" prop="password">
         <el-input v-model="form.password" show-password />
       </el-form-item>
 

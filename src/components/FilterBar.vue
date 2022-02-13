@@ -21,17 +21,43 @@
         v-show="focused"
         @focus="focused"
         @blur="focusedOff"
-        placeholder="пошук"
+        :placeholder="this.$t('search')"
         v-model="search"
+        class="inputMobile"
       >
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
+      <el-dropdown
+        ><el-button
+          @click="searchBtn"
+          circle
+          type="primary"
+          icon="el-icon-search"
+          class="searchBtnmin"
+        ></el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item
+            ><el-input
+              v-show="focused"
+              @focus="focused"
+              @blur="focusedOff"
+              placeholder="minmobile"
+              v-model="search"
+              class="inputMobileMin"
+            >
+              <i
+                slot="prefix"
+                class="el-input__icon el-icon-search"
+              ></i> </el-input
+          ></el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <el-button
         @click="searchBtn"
         circle
         type="primary"
         icon="el-icon-search"
-        class="mobile"
+        class="mobile searchBtn"
       ></el-button>
     </li>
   </ul>
@@ -64,7 +90,6 @@ export default {
 
   methods: {
     searchBtn() {
-      console.log(18);
       this.focused = true;
     },
     updateWidth() {
@@ -116,33 +141,26 @@ export default {
   }
 }
 
-.search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &-form {
-    background: none;
-    border: none;
-    transition: width 0.9s;
-    font: 0.9rem/1 "Open Sans", sans-serif;
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-
-    &::placeholder {
-      color: red;
-    }
-
-    &:focus {
-      border: none;
-      outline: none;
-      width: 10rem;
-      background: white;
-
-      &::placeholder {
-        color: var(--main-dark);
-      }
-    }
+.searchBtn {
+  margin-left: 10px;
+  @media screen and(max-width:380px) {
+    display: none;
+  }
+}
+.inputMobile {
+  @media screen and(max-width:380px) {
+    display: none;
+  }
+}
+.inputMobileMin {
+  @media screen and(min-width:380px) {
+    display: none;
+  }
+}
+.searchBtnmin {
+  margin-left: 10px;
+  @media screen and(min-width:380px) {
+    display: none;
   }
 }
 </style>
