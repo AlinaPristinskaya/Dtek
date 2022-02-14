@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/kiosk/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/portal-client/" : "/",
 
   configureWebpack: {
     resolve: {

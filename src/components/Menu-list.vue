@@ -22,13 +22,13 @@
         >
           <template slot="title">
             <i :class="menuItem.icon"></i>
-            <span slot="title">{{ menuItem.title }}</span>
+            <span slot="title">{{ $t(menuItem.title) }}</span>
           </template>
           <el-menu-item-group
             v-for="(submenuItem, index1) in menuItem.items"
             :key="index1"
           >
-            <span slot="title">{{ submenuItem.title }}</span>
+            <span slot="title">{{ $t(submenuItem.title) }}</span>
             <router-link
               v-for="navLink in submenuItem.links"
               :key="navLink.index"

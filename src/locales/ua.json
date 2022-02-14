@@ -1,27 +1,17 @@
 {
-
-    
       "login":"Вхід до системи",
       "loginBtn":"Вхід",
-      "loginName":"Введіть І`мя", 
+      "loginName":"Введіть і`мя", 
       "loginPassword":"Введіть пароль",
-      "language":"Мова",
-   
+      "language":"Мова",   
      "addForm":"Додати форму",
-      
-     
-
-"activeFlight": "Активні рейси",
-      
+      "activeFlight": "Активні рейси",      
       "flight":"Рейс №",
       "dateFlight":"Дата рейсу",
-      "numberOrders":"Номера заявок",
-      "data":"Дата створення",
+      "numberOrders":"Номера заявок",     
       "status":"Статус",
-      "invalid":"Відміна",
-    
-      "exit":"Вихід",
-    
+      "invalid":"Відміна",    
+      "exit":"Вихід",    
       "search":"пошук",
       "main":"Головна",
       "cancel":"Закрити",
@@ -30,7 +20,18 @@
       "send":"Відправити",
       "Warning": "Увага",
       "settings":"Налаштування",
-      "processing order":"Заявки"
+      "processing order":"Заявки",  
+      "welcome": "Вас вітає {company}!",
+      "courier": "ВАШ КУР'ЄР",
+      "infoCourier": "Інформація про кур'єра",
+      "time": "Час доставки:",
+      "name":"Ім`я:",
+      "trip": "Рейс",
+      "dataDrip": "Дата доставки",      
+      "order": "Заказ",     
+      "Processing order": "Обробка заказу",
+      "data" : "Дата створення"
+ 
 
 
     }
