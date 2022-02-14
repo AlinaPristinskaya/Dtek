@@ -8,18 +8,18 @@
       @submit.native.prevent="submitLogin"
     >
       <h1>
-        <p>{{ $t("main.login") }}</p>
+        <p>{{ $t("login") }}</p>
       </h1>
-      <el-form-item :label="логін" prop="username">
+      <el-form-item :label="$t('loginName')" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
-      <el-form-item label="пароль" prop="password">
+      <el-form-item :label="$t('loginPassword')" prop="password">
         <el-input v-model="form.password" show-password />
       </el-form-item>
 
       <div class="login__footer">
         <el-button type="primary" native-type="submit" :loading="loading">
-          <p>{{ $t("main.loginBtn") }}</p>
+          <p>{{ $t("loginBtn") }}</p>
         </el-button>
       </div>
     </el-form>
@@ -38,12 +38,12 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "Введіть І`мя", trigger: "blur" },
+          { required: true, message: this.$t("loginName"), trigger: "blur" },
         ],
         password: [
           {
             required: true,
-            message: "Введіть пароль",
+            message: this.$t("loginPassword"),
             trigger: "blur",
           },
         ],

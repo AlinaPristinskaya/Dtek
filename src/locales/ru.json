@@ -13,6 +13,13 @@
       "status":"Статус",      
       "exit":"Выход",    
       "search":"поиск",
-      "main":"Главная"
+      "main":"Главная",
+      "cancel":"Закрыть",
+      "Do you want to change the language to": "Вы хотите сменить язык на",
+      "editing":"Редактирование заявки",
+      "send":"Отправить",
+      "Warning": "Внимание",
+       "settings":"Настройки",
+       "processing order":"Заявки"
     }
   

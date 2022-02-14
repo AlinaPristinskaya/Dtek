@@ -18,30 +18,24 @@
     </li>
     <li>
       <el-input
-        v-show="focused"
-        @focus="focused"
-        @blur="focusedOff"
         :placeholder="this.$t('search')"
         v-model="search"
         class="inputMobile"
       >
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
-      <el-dropdown
+      <el-dropdown :hide-on-click="false"
         ><el-button
-          @click="searchBtn"
           circle
           type="primary"
           icon="el-icon-search"
-          class="searchBtnmin"
+          class="dropdownBtn"
         ></el-button>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item
             ><el-input
-              v-show="focused"
-              @focus="focused"
-              @blur="focusedOff"
-              placeholder="minmobile"
+              ref="myInput"
+              autofocus
               v-model="search"
               class="inputMobileMin"
             >
@@ -52,13 +46,6 @@
           ></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <el-button
-        @click="searchBtn"
-        circle
-        type="primary"
-        icon="el-icon-search"
-        class="mobile searchBtn"
-      ></el-button>
     </li>
   </ul>
 </template>
@@ -80,26 +67,7 @@ export default {
   data: () => ({
     checked: false,
     search: "",
-    focused: true,
-    width: 0,
   }),
-  mounted() {
-    this.updateWidth();
-    this.width > 768 ? (this.focused = true) : (this.focused = false);
-  },
-
-  methods: {
-    searchBtn() {
-      this.focused = true;
-    },
-    updateWidth() {
-      this.width = window.innerWidth;
-      console.log(this.width);
-    },
-    focusedOff() {
-      if (this.width < 768) this.focused = false;
-    },
-  },
 };
 </script>
 
@@ -115,7 +83,7 @@ export default {
     display: flex;
     align-items: center;
     &:last-child {
-      margin-right: 0;
+      margin-right: 10px;
     }
   }
 }
@@ -131,35 +99,29 @@ export default {
   position: relative;
 }
 .desctop {
-  @media screen and(max-width:768px) {
+  @media screen and(max-width:580px) {
     display: none;
   }
 }
 .mobile {
-  @media screen and(min-width:768px) {
+  @media screen and(min-width:580px) {
     display: none;
   }
 }
 
-.searchBtn {
-  margin-left: 10px;
-  @media screen and(max-width:380px) {
-    display: none;
-  }
-}
 .inputMobile {
-  @media screen and(max-width:380px) {
+  @media screen and(max-width:400px) {
     display: none;
   }
 }
-.inputMobileMin {
-  @media screen and(min-width:380px) {
-    display: none;
-  }
-}
-.searchBtnmin {
+.dropdownBtn {
   margin-left: 10px;
-  @media screen and(min-width:380px) {
+  :hover,
+  :focus {
+    color: white;
+  }
+
+  @media screen and(min-width:400px) {
     display: none;
   }
 }

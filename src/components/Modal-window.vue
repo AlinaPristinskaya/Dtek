@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="$t('Редагування заявки')"
+    :title="$t('editing')"
     :visible.sync="visible"
     width="70%"
     center

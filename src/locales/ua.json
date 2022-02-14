@@ -23,7 +23,14 @@
       "exit":"Вихід",
     
       "search":"пошук",
-      "main":"Головна"
+      "main":"Головна",
+      "cancel":"Закрити",
+      "Do you want to change the language to": "Ви хочете змінити мову на",
+      "editing":"Редагування заявки",
+      "send":"Відправити",
+      "Warning": "Увага",
+      "settings":"Налаштування",
+      "processing order":"Заявки"
 
 
     }

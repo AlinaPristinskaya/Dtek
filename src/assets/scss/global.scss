@@ -101,3 +101,20 @@ button {
   align-items: center;
 }
 /* filter-bar */
+.el-message-box {
+  @media screen and(max-width:420px) {
+    display: inline-block;
+    width: 260px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    font-size: 18px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+    text-align: left;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

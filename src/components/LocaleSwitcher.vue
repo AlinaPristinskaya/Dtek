@@ -1,27 +1,27 @@
 <template>
   <div>
-    <div v-if="btn">
-      <el-tooltip
-        class="item"
-        effect="dark"
-        content="Мова"
-        placement="right-start"
-      >
-        <a href="#" @click.prevent="switchLocalebtn">
-          <img src="../assets/img/uk.png" alt="" width="40" height="30" /> </a
-      ></el-tooltip>
-    </div>
-    <div v-if="!btn">
-      <el-tooltip
-        class="item"
-        effect="dark"
-        content="Язык"
-        placement="right-start"
-      >
-        <a href="#" @click.prevent="switchLocalebtn">
-          <img src="../assets/img/ru.png" alt="" width="40" height="30" /> </a
-      ></el-tooltip>
-    </div>
+    <el-tooltip
+      class="item"
+      effect="dark"
+      :content="this.$t('language')"
+      placement="right-start"
+    >
+      <a href="#" @click.prevent="switchLocalebtn">
+        <img
+          v-if="btn"
+          src="@/assets/img/uk.png"
+          alt=""
+          width="40"
+          height="30"
+        />
+        <img
+          v-if="!btn"
+          src="@/assets/img/ru.png"
+          alt=""
+          width="40"
+          height="30"
+        /> </a
+    ></el-tooltip>
   </div>
 </template>
 
@@ -37,11 +37,9 @@ export default {
       langs: [
         {
           value: "ua",
-          class: "spanFlagUk",
         },
         {
           value: "ru",
-          class: "spanFlagRu",
         },
       ],
     };
@@ -60,10 +58,25 @@ export default {
       }
     },
     switchLocalebtn() {
-      this.btn = !this.btn;
       const lang = this.langs.find((item) => item.value !== this.$i18n.locale);
-      setTimeout(this.switchLocale(lang.value), 1000);
-      // this.switchLocale(lang.value);
+
+      this.$confirm(
+        `${this.$t("Do you want to change the language to")} ${lang.value}?`,
+        this.$t("Warning"),
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: this.$t("cancel"),
+          type: "warning",
+        }
+      )
+        .then(() => {
+          this.$i18n.locale = lang.value;
+          localStorage.setItem("localeLang", `${lang.value}`);
+          this.btn = !this.btn;
+        })
+        .catch(() => {
+          this.value = this.$i18n.locale;
+        });
     },
     select() {
       this.value = localStorage.getItem("localeLang") || `ua`;

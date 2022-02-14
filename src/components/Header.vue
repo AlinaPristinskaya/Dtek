@@ -19,7 +19,6 @@
       <div class="header__logo">
         <img src="../assets/img/logo.svg" width="98" height="33" alt="ДТЭК" />
       </div>
-      <p>{{ $t("language") }}</p>
 
       <div>
         <el-dropdown :hide-on-click="false" class="dropdown-menu">
