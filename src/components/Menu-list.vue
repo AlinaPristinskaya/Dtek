@@ -36,7 +36,7 @@
             >
               <el-menu-item @click="itemClick" :index="navLink.index">
                 <i :class="navLink.icon"></i>
-                {{ navLink.title }}</el-menu-item
+                {{ $t(navLink.title) }}</el-menu-item
               >
             </router-link>
           </el-menu-item-group>

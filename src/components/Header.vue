@@ -26,7 +26,7 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
               <!-- Повторяющийся элемент -->
-              <a href="#" class="svga">
+              <a href="#" class="svga" v-if="this.$route.name !== 'login'">
                 <svg class="header__icon">
                   <use
                     href="../assets/img/symbol-defs.svg#icon-user"
@@ -36,6 +36,7 @@
             >
             <el-dropdown-item
               ><el-tooltip
+                v-if="this.$route.name !== 'login'"
                 class="item"
                 effect="dark"
                 :content="this.$t('exit')"
@@ -54,17 +55,15 @@
         </el-dropdown>
 
         <div class="menu-container">
-          <div class="header__user">
+          <div class="header__user" v-if="this.$route.name !== 'login'">
             <a href="#" class="svga">
               <svg class="header__icon">
                 <use href="../assets/img/symbol-defs.svg#icon-user"></use></svg
-              ><span v-if="this.$route.name !== 'login'" class="user">{{
-                userName
-              }}</span></a
+              ><span class="user">{{ userName }}</span></a
             >
           </div>
 
-          <div class="header__user">
+          <div class="header__user" v-if="this.$route.name !== 'login'">
             <el-tooltip
               class="item"
               effect="dark"
