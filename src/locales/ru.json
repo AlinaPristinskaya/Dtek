@@ -12,5 +12,6 @@
   "order": "Заказ",
   "Processing order": "Обработка заказа",
   "status": "Статус",
-  "data create" : "Дата создания"
+  "data create" : "Дата создания",
+  "settings": "Настройки"
 }
