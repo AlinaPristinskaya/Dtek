@@ -12,23 +12,30 @@
       />
       <router-view />
     </el-container>
+
+    <ModalAlina v-if="showModal" />
+
+    <button @click="showModalOpen">Модалка</button>
   </div>
 </template>
 <script>
 import Header from "./components/Header";
 import Asidebar from "./components/Aside-bar";
 import AsideBarMenu from "./modules/AsideBarMenu";
+import ModalAlina from "./components/Alina/ModalAlina";
 
 export default {
   components: {
     Header,
     Asidebar,
+    ModalAlina,
   },
   data: () => ({
     AsideBarMenu: AsideBarMenu || {},
     isLoggedIn: true,
     openedMenuTabs: [],
     activeTab: "1-1",
+    showModal: false,
   }),
 
   computed: {
@@ -58,6 +65,10 @@ export default {
     //   this.openedMenuTabs.push(index);
     //   this.activeTab = index;
     // },
+    showModalOpen() {
+      console.log(this.showModal);
+      this.showModal = !this.showModal;
+    },
   },
 };
 </script>
